@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipboard Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="/main.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="search-bar">
+        <input type="text" id="search" placeholder="Search..." autocomplete="off" />
+      </div>
+      <div id="tabs">
+        <button class="tab active" data-tab="history">History</button>
+        <button class="tab" data-tab="snippets">Snippets</button>
+      </div>
+      <div id="main-area">
+        <div id="folder-sidebar" style="display:none"></div>
+        <div id="list-wrapper">
+          <ul id="item-list"></ul>
+          <div id="empty-state">Nothing here yet.</div>
+        </div>
+      </div>
+
+      <div id="snippet-editor" style="display:none">
+        <input id="editor-name" placeholder="Snippet name" />
+        <input id="editor-folder" placeholder="Folder (e.g. General)" />
+        <textarea id="editor-content" placeholder="Snippet content..."></textarea>
+        <div id="editor-buttons">
+          <button id="editor-cancel">Cancel</button>
+          <button id="editor-save">Save</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

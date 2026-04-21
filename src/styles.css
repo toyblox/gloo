@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  --bg: #ffffff;
+  --bg-hover: #f0f0f0;
+  --bg-selected: #0066ff;
+  --bg-sidebar: #f7f7f7;
+  --text: #1a1a1a;
+  --text-muted: #888;
+  --text-selected: #ffffff;
+  --border: #e0e0e0;
+  --accent: #0066ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1e1e;
+    --bg-hover: #2a2a2a;
+    --bg-sidebar: #252525;
+    --text: #f0f0f0;
+    --text-muted: #666;
+    --border: #333;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#search-bar {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+#search {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-hover);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+
+#tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 7px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+#main-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#folder-sidebar {
+  width: 90px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+}
+
+.folder-btn {
+  padding: 6px 10px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 1px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-btn:hover { background: var(--bg-hover); }
+.folder-btn.active { background: var(--accent); color: white; }
+.new-snippet-btn { color: var(--accent); margin-top: auto; }
+
+#list-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#item-list {
+  list-style: none;
+}
+
+.clip-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+
+.clip-item:hover { background: var(--bg-hover); }
+.clip-item.selected { background: var(--bg-selected); color: var(--text-selected); }
+
+.clip-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.clip-actions {
+  display: none;
+  gap: 4px;
+}
+
+.clip-item:hover .clip-actions { display: flex; }
+
+.clip-actions button {
+  font-size: 11px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+#empty-state {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+#snippet-editor {
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+#snippet-editor input,
+#snippet-editor textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-hover);
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+#snippet-editor textarea { height: 80px; }
+
+#editor-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+#editor-buttons button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#editor-save {
+  background: var(--accent) !important;
+  color: white !important;
+  border-color: var(--accent) !important;
+}
