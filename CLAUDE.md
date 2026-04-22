@@ -67,11 +67,15 @@ Plugins provide OS-level capabilities (clipboard, global shortcuts, SQL, tray). 
 
 ### Renaming the app
 
-Update `productName`/`identifier` in `tauri.conf.json`, `name` in `src-tauri/Cargo.toml`, and `name` in `package.json`. Replace placeholder icons in `src-tauri/icons/` with your own (need `.icns`, `.ico`, and multiple `.png` sizes).
+Update `productName`/`identifier` in `tauri.conf.json`, `name` in `src-tauri/Cargo.toml`, and `name` in `package.json`. Replace placeholder icons in `src-tauri/icons/` by running `npm run tauri icon <source.png>` — source must be a square PNG.
 
-### Planned plugins
+### Active plugins
 
 - `clipboard-manager` — clipboard read/write and change monitoring
-- `sql` — SQLite persistence for clipboard history and snippets
-- `global-shortcut` — system-wide hotkey to toggle the popup
+- `sql` — SQLite persistence for snippets
+- `global-shortcut` — `Cmd+Shift+V` system-wide hotkey to toggle the popup; permissions live in `capabilities/desktop.json`
 - `tray-icon` — menu bar presence (no Dock icon)
+
+### paste command (lib.rs)
+
+`invoke("paste")` writes text to the clipboard then calls the Rust `paste` command, which hides the window and spawns a thread to run `osascript` after an 80ms delay. The delay is needed for focus to transfer back to the previously active app. Do not use the `enigo` crate — it panics in unsigned dev builds due to missing Accessibility permissions.

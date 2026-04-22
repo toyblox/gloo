@@ -1,5 +1,6 @@
 import { readText, writeText } from "@tauri-apps/plugin-clipboard-manager";
 import { listen } from "@tauri-apps/api/event";
+import { invoke } from "@tauri-apps/api/core";
 import { getSnippets, saveSnippet, deleteSnippet } from "./db.js";
 import {
   addToHistory,
@@ -149,7 +150,7 @@ async function removeSnippet(id) {
 
 async function pasteItem(text) {
   await writeText(text);
-  // TODO Phase 4: simulate Cmd+V after hiding window
+  await invoke("paste");
 }
 
 // --- Tabs ---

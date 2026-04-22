@@ -48,8 +48,8 @@ npm run tauri build
 
 ## Roadmap
 
-- [ ] Global hotkey to open popup from anywhere
-- [ ] Click-to-paste (auto-pastes into active app)
+- [x] Global hotkey to open popup from anywhere (`Cmd+Shift+V`)
+- [x] Click-to-paste (auto-pastes into active app)
+- [x] Custom app icon
 - [ ] Keyboard navigation
 - [ ] Configurable history limit and hotkey
-- [ ] Custom app icon
